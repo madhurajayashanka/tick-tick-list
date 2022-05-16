@@ -1,0 +1,32 @@
+<%- include('header'); -%>
+  <body>
+    <div class="box" id="heading">
+      <h1><%= listTitle %></h1>
+    </div>
+    <div class="box">
+
+      <%item.forEach(listItem=>{ %>
+
+        <form action="/delete" method="post">
+        <div class="item">
+          <input value="<%=listItem._id %>" onChange="this.form.submit()" name="checkbox" class="checkboxstyle" type="checkbox">
+          <p> <%= listItem['name'] %> </p>
+        </div>
+        <input type="hidden" name="listName" value="<%= listTitle %>" >
+      </form>
+        <% }) %>
+
+        <form class="item" method="post" action="/">
+          <input placeholder="New Item" type="text" name="newItem" autocomplete="off">
+          <button name="list" value="<%= listTitle %>" type="submit">+</button>
+        </form>
+
+  </div>
+<footer>
+  <p id="year"></p>
+</footer>
+<script>
+  const year = new Date().getFullYear();
+  document.getElementById("year").innerHTML = `${year} &copy; Madhura Jayashanka`;
+</script>
+  <%- include('footer'); -%>
